@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --text: #f5f5f5;
+      --card: rgba(255, 255, 255, 0.05);
+      --header: rgba(13, 17, 23, 0.85);
+      --accent: #66fcf1;
+      --footer: #1f2833;
+      --cardInner: rgba(255, 255, 255, 0.08);
+    }
+
+    body.light {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --card: #f1f1f1;
+      --header: #e0f7ff;
+      --accent: #1d3557;
+      --footer: #e0e0e0;
+      --cardInner: #ffffff;
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+      perspective: 1000px;
+      overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://raw.githubusercontent.com/KhanradCoder/star-bg/main/stars.svg');
+      background-size: cover;
+      z-index: -1;
+      animation: moveStars 200s linear infinite;
+      opacity: 0.15;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 10000px; }
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 8px 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      z-index: 999;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .toggle-btn:hover {
+      opacity: 0.8;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      background: var(--header);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .typing {
+      font-size: 1.2rem;
+      border-right: 2px solid var(--accent);
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    section {
+        padding: 60px 20px;
+        max-width: 900px;
+        margin: 80px auto;
+        background: var(--card);
+        border-radius: 12px;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transform: scale(0.8) rotateX(-30deg) translateY(100px);
+        transform-origin: center;
+        transition: all 1s ease;
+        backface-visibility: hidden;
+        will-change: transform, opacity;
+        }
+
+        section.visible {
+        opacity: 1;
+        transform: scale(1) rotateX(0deg) translateY(0);
+        }
+
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .projects{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 20px;
+    }
+    .skill, .project {
+      background: var(--cardInner);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+      transition: all 0.8s ease-out;
+    }
+
+    .skill.show, .project.show {
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+    }
+
+    footer {
+      background-color: var(--footer);
+      color: var(--text);
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .typing {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body class="dark">
+
+  <button id="toggleBtn" class="toggle-btn" onclick="toggleMode()">Light Mode</button>
+
+
+  <header>
+    <h1>Prithwish Narayan Majumder</h1>
+    <div class="typing">Programmer | MERN Stack Enthusiast | Tech Explorer</div>
+  </header>
+
+  <section class="reveal">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate full-stack developer with experience in React, Node.js, and modern web technologies. I love building interactive web apps, solving problems, and continuously learning new things in tech.
+    </p>
+  </section>
+
+  <section class="reveal">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">HTML5<br></div>
+      <div class="skill">CSS3<br></div>
+      <div class="skill">JavaScript<br></div>
+      <div class="skill">React.js<br></div>
+      <div class="skill">Node.js<br></div>
+      <div class="skill">MongoDB<br></div>
+      <div class="skill">C<br></div>
+      <div class="skill">Python<br></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <strong>Quizzy</strong>
+        <p>A real-time quiz game platform using MERN stack. Users can create and play live quizzes with friends.</p>
+      </div>
+      <div class="project">
+        <strong>Bazar India</strong>
+        <p>An e-commerce website for online shopping built with React and Node.js. Includes cart, payment, and user auth.</p>
+      </div>
+      <div class="project">
+        <strong>BMI-Calculator</strong>
+        <p>A web app for calculating Body Mass Index (BMI) using React. Users can input their height and weight to get instant BMI results.</p>
+      </div>
+      <div class="project">
+        <strong>Weather-Report</strong>
+        <p>A weather forecasting app built with React and Node.js. Users can check the weather for their location and get real-time updates.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Contact Me</h2>
+    <p>
+      📧 Email: majumderprithwish73@gmail.com<br/> 
+      💼 LinkedIn: https://www.linkedin.com/in/prithwish-narayan-majumder-226416252/
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Prithwish Majumder | All Rights Reserved
+  </footer>
+
+  <script>
+   
+  // Reveal section scroll animation
+  const reveals = document.querySelectorAll('.reveal');
+  function revealOnScroll() {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    const elementBottom = el.getBoundingClientRect().bottom;
+
+    const isVisible = elementTop < windowHeight - 100 && elementBottom > 100;
+
+    if (isVisible) {
+      el.classList.add('visible');
+    } else {
+      el.classList.remove('visible');
+    }
+  });
+}
+
+
+  // Pop-up Cards animation
+  const popCards = document.querySelectorAll('.skill, .project');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  popCards.forEach(card => observer.observe(card));
+
+  // Toggle dark/light mode and update button text
+  function toggleMode() {
+    const body = document.body;
+    const btn = document.getElementById("toggleBtn");
+
+    body.classList.toggle("light");
+
+    if (body.classList.contains("light")) {
+      btn.textContent = "Dark Mode";
+    } else {
+      btn.textContent = "Light Mode";
+    }
+  }
+
+  // Set initial button text based on theme
+  window.addEventListener('load', () => {
+    revealOnScroll();
+
+    const btn = document.getElementById("toggleBtn");
+    if (document.body.classList.contains("light")) {
+      btn.textContent = "Dark Mode";
+    } else {
+      btn.textContent = "Light Mode";
+    }
+  });
+
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+
+</body>
+</html>
